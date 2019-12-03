@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController@getHome');
 
 /*
     Route::get('login', function () {
@@ -23,26 +23,16 @@ Route::get('/', 'HomeController@index');
 */
 
 Route::group(
-    ['prefix' => 'catalog'], function () {
+    ['prefix' => 'catalog','middleware' => 'auth'], function () {
     Route::get('/', 'CatalogController@getIndex');
+    Route::get('/show/{id}', 'CatalogController@getShow')->where('id', '[0-9]+');
 
-    Route::group(
-        ['middleware' => 'auth'], function() {
-        Route::get('/show/{id}', 'CatalogController@getShow')->where('id', '[0-9]+');
+    Route::get('/create', 'CatalogController@getCreate');
+    Route::post('/create', 'CatalogController@postCreate');
 
-        Route::get('/create', 'CatalogController@getCreate');
-        Route::post('/create', 'CatalogController@postCreate');
-
-        Route::get('/edit/{id}', 'CatalogController@getEdit')->where('id', '[0-9]+');
-        Route::put('/edit', 'CatalogController@putEdit');
-    });
+    Route::get('/edit/{id}', 'CatalogController@getEdit')->where('id', '[0-9]+');
+    Route::put('/edit', 'CatalogController@putEdit');
 });
-
-
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 

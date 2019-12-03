@@ -50,7 +50,7 @@ class CatalogController extends Controller
 
     public function putEdit(Request $request) {
 
-        $id = $request->identificacion;
+        $id = $request->id;
 
         $m = Movie::findOrFail($id);
             $m->title = $request->title;
@@ -60,5 +60,6 @@ class CatalogController extends Controller
             $m->synopsis = $request->synopsis;
         $m->save();
         return redirect()->action('CatalogController@getShow',[$id]);
+
     }
 }

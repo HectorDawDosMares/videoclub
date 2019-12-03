@@ -11,12 +11,6 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 @guest
-                <li class="nav-item {{ Request::is('catalog') && ! Request::is('catalog/create')? 'active' : ''}}">
-                    <a class="nav-link" href="{{url('/catalog')}}">
-                        <span class="glyphicon glyphicon-film" aria-hidden="true"></span>
-                        Catálogo
-                    </a>
-                </li>
                 @else
                 <li class="nav-item {{ Request::is('catalog') && ! Request::is('catalog/create')? 'active' : ''}}">
                     <a class="nav-link" href="{{url('/catalog')}}">

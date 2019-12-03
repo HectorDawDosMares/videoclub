@@ -14,6 +14,8 @@
                         {{method_field('PUT')}}
                         @csrf
 
+                        <input type="hidden" name="id" value="{{ $pelicula->id }}">
+
                         <div class="form-group">
                             <label for="title">Título</label>
                             <input type="text" name="title" id="title" class="form-control" value="{{ $pelicula->title }}">
@@ -41,8 +43,6 @@
                                 Modificar película
                             </button>
                         </div>
-
-                        <input type="hidden" name="identificacion" value="{{ $pelicula->id }}">
 
                     </form>
 
